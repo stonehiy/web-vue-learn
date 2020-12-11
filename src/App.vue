@@ -5,8 +5,8 @@
     <!-- <router-view id="containner" /> -->
 
     <!-- 使用动态的 transition name -->
-    <transition :name="fade">
-      <router-view  id="containner"></router-view>
+    <transition>
+      <router-view id="containner"></router-view>
     </transition>
     <footer-view></footer-view>
 
@@ -24,8 +24,7 @@ export default {
   components: {
     HeaderView,
     FooterView
-  },
-  
+  }
 };
 </script>
 

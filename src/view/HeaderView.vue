@@ -2,36 +2,96 @@
 <template>
   <div class="header">
     <ul class="menu">
-      <li
-        v-for="(header, index) in headerList"
-        v-bind:key="index"
-        @click="onTabClick(header)"
-      >
-        <a>{{ header.name }}</a>
+      <li v-for="(header, index) in headerList" v-bind:key="index">
+        <a href="#">{{ header.name }}</a>
+        <sub-menu
+          class="sub-menu"
+          v-bind:subMenuList="header.children"
+          @onSubMenu="onSubMenu($event)"
+        ></sub-menu>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import SubMenu from "@/view/SubMenu";
+
 export default {
   name: "HeaderView",
 
-  components: {},
+  components: {
+    SubMenu
+  },
 
   data() {
     return {
       headerList: [
-        { id: 0, name: "HelloWorld" },
-        { id: 1, name: "CSS" },
-        { id: 2, name: "标签3" },
-        { id: 3, name: "标签4" },
-        { id: 4, name: "标签5" },
-        { id: 5, name: "标签6" },
-        { id: 6, name: "标签7" },
-        { id: 7, name: "标签8" },
-        { id: 8, name: "标签9" },
-        { id: 9, name: "标签10" }
+        {
+          id: 0,
+          name: "HelloWorld",
+          children: [
+            { id: 0, name: "HelloWorld" },
+            { id: 1, name: "HelloWorld2" }
+          ]
+        },
+        {
+          id: 1,
+          name: "CSS",
+          children: [
+            { id: 0, name: "FloatPage" },
+            { id: 1, name: "HelloWorld" },
+            { id: 2, name: "SlotView" }
+          ]
+        },
+        {
+          id: 2,
+          name: "标签3",
+          children: [
+            { id: 0, name: "BodyView" },
+            { id: 1, name: "BodyView" },
+            { id: 2, name: "BodyView" }
+          ]
+        },
+        {
+          id: 3,
+          name: "标签4",
+          children: [
+            { id: 0, name: "BodyView" },
+            { id: 1, name: "BodyView" },
+            { id: 2, name: "BodyView" }
+          ]
+        },
+        {
+          id: 4,
+          name: "标签5",
+          children: [
+            { id: 0, name: "BodyView" },
+            { id: 1, name: "BodyView" },
+            { id: 2, name: "BodyView" }
+          ]
+        },
+        {
+          id: 5,
+          name: "标签6",
+          children: [
+            { id: 0, name: "BodyView" },
+            { id: 1, name: "BodyView" },
+            { id: 2, name: "BodyView" }
+          ]
+        },
+        {
+          id: 6,
+          name: "标签7",
+          children: [
+            { id: 0, name: "标签7" },
+            { id: 1, name: "标签7" },
+            { id: 2, name: "标签7" },
+            { id: 0, name: "标签7" },
+            { id: 1, name: "标签7" },
+            { id: 2, name: "标签7" }
+          ]
+        }
       ]
     };
   },
@@ -69,6 +129,12 @@ export default {
           break;
       }
       this.$router.push({ name, params });
+    },
+    onSubMenu(subMenu) {
+      console.log("subMenu =", subMenu);
+      let name = subMenu.name;
+      let params = { tab: subMenu.name };
+      this.$router.push({ name, params });
     }
   }
 };
@@ -93,14 +159,7 @@ export default {
   float: left; /* 往左浮动 */
 }
 
-.menu li a:hover {
-  background: #146c9c;
-  color: #fff;
-  text-decoration: none;
-  border-right: 1px solid #000;
-}
-
-.menu li a {
+.menu > li {
   display: block; /* 将链接设为块级元素 */
   width: 150px; /* 设置宽度 */
   height: 50px; /* 设置高度 */
@@ -110,5 +169,26 @@ export default {
   color: #fff; /* 设置文字颜色 */
   text-decoration: none; /* 去掉下划线 */
   border-right: 1px solid #000; /* 在左侧加上分隔线 */
+}
+.menu > li > a {
+  color: #fff; /* 设置文字颜色 */
+  text-decoration: none; /* 去掉下划线 */
+}
+
+/* 设置二级菜单绝对定位，并隐藏 */
+.menu > li > .sub-menu {
+  position: absolute;
+  display: none;
+}
+.menu > li:hover .sub-menu {
+  display: block;
+}
+
+/* 鼠标放在一级菜单上*/
+.menu > li:hover {
+  background: #146c9c;
+  color: #fff;
+  text-decoration: none;
+  border-right: 1px solid #000;
 }
 </style>
