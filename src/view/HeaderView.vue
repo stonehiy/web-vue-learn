@@ -32,7 +32,7 @@ export default {
           name: "HelloWorld",
           children: [
             { id: 0, name: "HelloWorld" },
-            { id: 1, name: "HelloWorld2" }
+            { id: 1, name: "FormPage" }
           ]
         },
         {
