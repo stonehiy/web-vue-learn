@@ -125,10 +125,11 @@
       }
 
       .list-view{
+        overflow:hidden;
+        font-size: 15px;
         display: inline-block;
         width: 50%;
-        height: 300px;
-        background-color: aqua;
+        height: 300px; 
       }
       .list-view-left{
         background-color: aqua;
@@ -165,9 +166,21 @@
       <div >   
         <div class="list-container">
           <div class="list-view list-view-left">
+
+            <ul>
+              <li v-for="i in 23">
+                <a href="#">文字描述{{i}}</a>
+                
+              </li>
+            </ul>
+
           </div>
       
-          <div class="list-view list-view-right">              
+          <div class="list-view list-view-right">      
+            <ul>
+              <li v-for="i in 22"><a href="#">文字描述{{i}}</a></li>
+            </ul>
+            
           </div>       
         </div>  
           
