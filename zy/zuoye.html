@@ -75,6 +75,23 @@
         width: 980px;
         position: relative;
       }
+
+      .top-view{
+        height: 50px;
+        position: relative;
+       
+        /* text-align:center ; */
+      }
+      .top-view>img{
+        position: absolute;
+        top: 10px;
+        left: 15px;
+      }
+      .top-view>span{
+        position: absolute;
+        top: 10px;
+        right: 15px;
+      }
       .navigation-up {
         height: 60px;
         background: #344157;
@@ -119,28 +136,49 @@
       }
 
       .list-container{
-        font-size: 0px;
-        width: 90%;
+        /* font-size: 0px;*/
+        width: 90%; 
         margin: 0 auto;
+        display: flex;
+        flex-direction: row; 
+        justify-content:center;
       }
 
       .list-view{
         overflow:hidden;
         font-size: 15px;
-        display: inline-block;
-        width: 50%;
-        height: 300px; 
+        /* display: inline-block;
+        width: 50%; 
+        height: 300px; */
+        align-items:center;
+        flex-grow:1;
       }
       .list-view-left{
-        background-color: aqua;
+        background-color: #f7f7f7;
       }
       .list-view-right{
-        background-color: rgb(255, 0, 0);
+        background-color: #f7f7f7;
       }
+
+      .item-content{
+        padding: 5px 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+
     
      
     </style>
     <div class="head-v3" id="index">
+
+      <div class="top-view">
+        <img src="" alt="image" srcset="" width="100px" height="30px">
+        <span><a  href="#">English</a>|<a  href="#">网站地图</a></span>
+      </div>
+
+
       <div class="navigation-up">
         <div class="navigation-inner">
           <div class="navigation-v3">
@@ -159,6 +197,7 @@
           </div>
         </div>
       </div>
+
       <div>
         <img class="img-banner" src="img/datu.jpg" alt="">
       </div>
@@ -167,28 +206,70 @@
         <div class="list-container">
           <div class="list-view list-view-left">
 
+            <div class="item-content">
+              <a href="#">文字描述</a> 
+              <a href="#">更多>></a>
+            </div>
+            <hr>
             <ul>
-              <li v-for="i in 23">
-                <a href="#">文字描述{{i}}</a>
-                
+              <li v-for="i in 5" class="item-content">
+                <a href="#">文字描述{{i}}</a> 
+                <a href="#"> 12-29</a>
               </li>
             </ul>
 
           </div>
       
           <div class="list-view list-view-right">      
+            <div class="item-content">
+              <a href="#">文字描述</a> 
+              <a href="#">更多>></a>
+            </div>
+            <hr>
             <ul>
-              <li v-for="i in 22"><a href="#">文字描述{{i}}</a></li>
-            </ul>
-            
+              <li v-for="i in 5" class="item-content">
+                <a href="#">文字描述{{i}}</a>
+                <a href="#"> 2019-12-29</a>
+              </li>
+            </ul>            
           </div>       
         </div>  
+        <hr>
           
       </div>
+
+      <div style="text-align: center;">
+        <select >
+          <option value="" style='display:none;' disabled selected>请选择</option>
+          <option>深圳教育</option>
+          <option>广东教育</option>
+          <option>中国教育</option>
+        </select>
+        <div>
+          一些文字描述1
+        </div>
+
+        <div>
+          <img src="" alt="image1">
+          <img src="" alt="image2">
+          <img src="" alt="image3">
+        </div>
+        
+
+        <div>
+          一些文字描述2
+        </div>
+        <div>
+          一些文字描述3
+        </div>
+      </div>
+
+
+
      
     
 
-      </div>
+      
     </div>
    
     <script src="https://s1.pstatp.com/cdn/expire-1-M/vue/2.2.2/vue.min.js"></script>
