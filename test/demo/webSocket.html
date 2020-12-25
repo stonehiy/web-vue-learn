@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://s1.pstatp.com/cdn/expire-1-M/vue/2.2.2/vue.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="index">
+        <input v-model="msg" placeholder="edit me">
+        <button v-on:click="loopSend()">提交</button>
+    </div>
+
+    <script>
+      //   const ws = new WebSocket("ws://localhost:10000");
+      //   ws.onopen = function() {
+      //     console.log("ws onopen");
+      //     ws.send("from client: hello");
+      //   };
+      //   ws.onmessage = function(e) {
+      //     console.log("ws onmessage");
+      //     console.log("from server: " + e.data);
+      //   };
+
+      new Vue({
+        el: "#index",
+        data() {
+          return {
+            path: "ws://localhost:10000",
+            socket: "",
+            msg:""
+          };
+        },
+        created() {},
+        mounted() {
+          // 初始化
+          this.init();
+        },
+
+        updated() {
+        
+        },
+
+        methods: {
+          init: function() {
+            if (typeof WebSocket === "undefined") {
+              alert("您的浏览器不支持socket");
+            } else {
+              // 实例化socket
+              this.socket = new WebSocket(this.path);
+              // 监听socket连接
+              this.socket.onopen = this.open;
+              // 监听socket错误信息
+              this.socket.onerror = this.error;
+              // 监听socket消息
+              this.socket.onmessage = this.getMessage;
+            }
+          },
+          open() {
+            console.log("socket连接成功");
+          },
+          error() {
+            console.log("连接错误");
+          },
+          getMessage(msg) {
+            console.log(msg.data);
+          },
+          send(params) {
+            console.log("send : ",params);
+            this.socket.send(params);
+          },
+          close() {
+            console.log("socket已经关闭");
+          },
+          loopSend(){
+              for(let i = 0;i<100;i++){
+                this.send("xxxxx = "+i)
+              }
+              for(let i = 0;i<100;i++){
+                this.send("yyyyy = "+i)
+              }
+          }
+        },
+        destroyed() {
+          // 销毁监听
+          this.socket.onclose = this.close;
+        }
+      });
+    </script>
+  </body>
+</html>
