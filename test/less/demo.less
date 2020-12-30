@@ -1,0 +1,28 @@
+
+/*
+变量 
+@height:100px
+@box:box;
+*/
+
+@height:20px;
+@box:box;
+
+div{
+    width: 100px;
+    height: 100px;
+    div{
+        //直接使用以@变量名的形式使用
+        width: 10px;
+        height: @height;
+
+        .div1{
+            background-color:#ff0;
+          }
+        
+          //作为类名使用以@{变量名}的形式使用
+        .@{box}{
+            width: 50px;
+        }
+    }
+}

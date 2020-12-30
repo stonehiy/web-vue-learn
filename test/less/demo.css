@@ -1,0 +1,19 @@
+/*
+变量 
+@height:100px
+@box:box;
+*/
+div {
+  width: 100px;
+  height: 100px;
+}
+div div {
+  width: 10px;
+  height: 20px;
+}
+div div .div1 {
+  background-color: #ff0;
+}
+div div .box {
+  width: 50px;
+}
